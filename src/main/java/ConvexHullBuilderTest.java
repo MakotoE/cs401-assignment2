@@ -61,12 +61,27 @@ public class ConvexHullBuilderTest {
 						new Point2D(0, 0),
 					},
 					new Point2D[]{
-						new Point2D(-2, 1),
 						new Point2D(-1, -1),
 						new Point2D(2, 0),
 						new Point2D(1, 1),
+						new Point2D(-2, 1),
 					},
-				}
+				},
+				{
+					new Point2D[]{
+						new Point2D(2950.0, 7388.0),
+						new Point2D(2913.0, 4900.0),
+						new Point2D(6138.0, 5063.0),
+						new Point2D(6675.0, 7538.0),
+						new Point2D(4413.0, 6300.0),
+					},
+					new Point2D[]{
+						new Point2D(2913.0, 4900.0),
+						new Point2D(6138.0, 5063.0),
+						new Point2D(6675.0, 7538.0),
+						new Point2D(2950.0, 7388.0),
+					},
+				},
 			});
 		}
 

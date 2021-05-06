@@ -1,6 +1,8 @@
 import edu.princeton.cs.algs4.Point2D;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Stack;
 
 public class ConvexHullBuilder {
@@ -17,16 +19,14 @@ public class ConvexHullBuilder {
 			}
 		}
 
+		points.removeAll(Collections.singletonList(lowest));
+
 		// Sort by polar angle with lowest point
 		points.sort(lowest.polarOrder());
 
 		// Remove points with same polar angle
 		for (int i = 0; i < points.size() - 1; i++) {
-			if (
-				lowest != points.get(i)
-				&& lowest != points.get(i + 1)
-				&& Point2D.ccw(lowest, points.get(i), points.get(i + 1)) == 0
-			) {
+			if (Point2D.ccw(lowest, points.get(i), points.get(i + 1)) == 0) {
 				if (lowest.distanceTo(points.get(i)) > lowest.distanceTo(points.get(i + 1))) {
 					points.remove(i + 1);
 				} else {
@@ -37,6 +37,7 @@ public class ConvexHullBuilder {
 		}
 
 		var stack = new Stack<Point2D>();
+		stack.push(lowest);
 
 		// Find path with only left turns
 		for (var point : points) {
