@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
+/**
+ * Convex hull of a set of points.
+ */
 public class ConvexHullBuilder {
+	/**
+	 * Finds the convex hull using the Graham scan for the given points.
+	 * @return The ordered points of the convex hull
+	 */
 	static Stack<Point2D> get_stack(ArrayList<Point2D> points) {
 		if (points.size() == 0) {
 			return new Stack<>();
@@ -29,14 +36,15 @@ public class ConvexHullBuilder {
 			.collect(Collectors.toList());
 
 		// Remove points with same polar angle
-		for (int i = 0; i < sortedPoints.size() - 1; i++) {
+		for (int i = 0; i < sortedPoints.size() - 1; ++i) {
 			if (Point2D.ccw(lowest, sortedPoints.get(i), sortedPoints.get(i + 1)) == 0) {
+				// Farthest point is removed if angle is equal
 				if (lowest.distanceTo(sortedPoints.get(i)) > lowest.distanceTo(sortedPoints.get(i + 1))) {
 					sortedPoints.remove(i + 1);
 				} else {
 					sortedPoints.remove(i);
 				}
-				i--;
+				--i;
 			}
 		}
 
@@ -60,6 +68,9 @@ public class ConvexHullBuilder {
 		this.stack = get_stack(points);
 	}
 
+	/**
+	 * @return Ordered points that make up the convex hull
+	 */
 	public Iterable<Point2D> hull() {
 		return this.stack;
 	}
