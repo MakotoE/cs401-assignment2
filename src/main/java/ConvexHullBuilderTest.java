@@ -33,6 +33,15 @@ public class ConvexHullBuilderTest {
 				{
 					new Point2D[]{
 						new Point2D(0, 0),
+						new Point2D(0, 0),
+					},
+					new Point2D[]{
+						new Point2D(0, 0),
+					},
+				},
+				{
+					new Point2D[]{
+						new Point2D(0, 0),
 						new Point2D(1, 0),
 					},
 					new Point2D[]{
@@ -94,7 +103,7 @@ public class ConvexHullBuilderTest {
 		@Test
 		public void test() {
 			var result = ConvexHullBuilder.get_stack(new ArrayList<>(Arrays.asList(points)));
-			assertArrayEquals(result.toArray(), expected);
+			assertArrayEquals(expected, result.toArray());
 		}
 	}
 }
